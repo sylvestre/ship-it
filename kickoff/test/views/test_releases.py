@@ -16,9 +16,17 @@ class TestRequestsAPI(ViewTest):
         ret = self.get('/releases')
         expected = {
             'releases': ['Fennec-1-build1', 'Fennec-4-build4',
-                         'Fennec-4-build5', 'Firefox-2-build1',
-                         'Thunderbird-2-build2', 'Thunderbird-4.0-build1']
+                         'Fennec-4-build5', 'Fennec-24.0-build4',
+                         'Fennec-24.0.1-build4', 'Fennec-23.0b2-build4',
+                         'Firefox-2.0-build1', "Firefox-2.0.2esr-build1",
+                         'Firefox-3.0b2-build1', 'Firefox-3.0b2-build2',
+                         'Firefox-3.0.1-build1',
+                         'Thunderbird-2-build2', 'Thunderbird-4.0-build1',
+                         'Thunderbird-23.0-build1', 'Thunderbird-23.0.1-build1',
+                         'Thunderbird-24.0b2-build2'
+                     ]
         }
+        self.maxDiff = None
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
 
@@ -61,13 +69,13 @@ class TestReleaseAPI(ViewTest):
         self.assertEquals(json.loads(ret.data), expected)
 
     def testGetReleaseWithPromptWaitTime(self):
-        ret = self.get('/releases/Firefox-2-build1')
+        ret = self.get('/releases/Firefox-2.0-build1')
         expected = {
-            'name': 'Firefox-2-build1',
+            'name': 'Firefox-2.0-build1',
             'product': 'firefox',
             'submitter': 'joe',
             'submittedAt': pytz.utc.localize(datetime.datetime(2005, 1, 2, 3, 4, 5, 6)).isoformat(),
-            'version': '2',
+            'version': '2.0',
             'buildNumber': 1,
             'comment': 'yet an other amazying comment',
             'branch': 'a',
@@ -79,7 +87,7 @@ class TestReleaseAPI(ViewTest):
             'ready': True,
             'complete': True,
             'starter': None,
-            'status': '',
+            'status': 'postrelease',
             'promptWaitTime': 5,
             'mozillaRelbranch': 'FOO',
         }
@@ -109,7 +117,7 @@ class TestReleaseAPI(ViewTest):
             self.assertEquals(got, longStatus[:250])
 
     def testGetL10n(self):
-        ret = self.get('/releases/Firefox-2-build1/l10n')
+        ret = self.get('/releases/Firefox-2.0-build1/l10n')
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(ret.content_type, 'text/plain')
         self.assertEquals(ret.data, 'ja zu')

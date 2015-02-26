@@ -2,6 +2,7 @@ from datetime import datetime, timedelta
 
 import pytz
 import json
+import re
 
 from sqlalchemy import func
 from sqlalchemy.ext.hybrid import hybrid_property
@@ -194,7 +195,7 @@ def getReleaseTable(release):
         raise ValueError("Can't find release table for release %s" % release)
 
 
-def getReleases(ready=None, complete=None, status=None, productFilter=None, versionFilter=None, searchOtherShipped=False):
+def getReleases(ready=None, complete=None, status=None, productFilter=None, versionFilter=None, versionFilterCategory=None, searchOtherShipped=False, lastRelease=None):
     filters = {}
     if ready is not None:
         filters['ready'] = ready
@@ -211,8 +212,22 @@ def getReleases(ready=None, complete=None, status=None, productFilter=None, vers
     releases = []
     for table in tables:
         if filters:
-            for r in table.query.filter_by(**filters):
-                releases.append(r)
+            if lastRelease:
+                # Retrieve the last X version
+                results = table.query.filter_by(**filters).order_by(table._submittedAt.desc()).limit(20)
+            else:
+                results = table.query.filter_by(**filters)
+            for r in results:
+                if not versionFilterCategory:
+                    releases.append(r)
+                else:
+                    # We are using a manual filter here.
+                    # we are not doing it through SQL because:
+                    # * regexp queries are not really standard in SQL
+                    # * sqlalchemy does not provide a wrapper for this
+                    for versionFilter in versionFilterCategory:
+                        if re.match(versionFilter, r.version):
+                            releases.append(r)
         else:
             for r in table.query.all():
                 releases.append(r)

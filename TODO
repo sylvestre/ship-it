@@ -1,0 +1,47 @@
+= TODO =
+
+* see what to do with ESR_NEXT & FIREFOX_AURORA
+  replaceValue(primary_builds, "FIREFOX_AURORA", "38")
+* introduce ship date
+* take the current json to update the ship date
+* Finish mobile_details.json
+
+
+== Done ==
+
+firefox_beta_builds.json
+=> http://127.0.0.1:5000/json/firefox_beta_builds.json
+
+firefox_history_development_releases.json
+=> http://127.0.0.1:5000/json/firefox_history_development_releases.json
+
+firefox_history_major_releases.json =>
+=> http://127.0.0.1:5000/json/firefox_history_major_releases.json
+
+firefox_history_stability_releases.json
+=> http://127.0.0.1:5000/json/firefox_history_stability_releases.json
+
+firefox_primary_builds.json
+=> http://127.0.0.1:5000/json/firefox_primary_builds.json
+
+firefox_versions.json
+=> http://127.0.0.1:5000/json/firefox_versions.json
+
+languages.json
+=> http://127.0.0.1:5000/json/languages.json
+
+mobile_history_development_releases.json
+=> http://127.0.0.1:5000/json/mobile_history_development_releases.json
+
+mobile_history_major_releases.json
+=> http://127.0.0.1:5000/json/mobile_history_major_releases.json
+
+mobile_history_stability_releases.json
+=> http://127.0.0.1:5000/json/mobile_history_stability_releases.json
+
+=> http://127.0.0.1:5000/json/thunderbird_history_development_releases.json
+=> http://127.0.0.1:5000/json/thunderbird_history_major_releases.json
+=> http://127.0.0.1:5000/json/thunderbird_history_stability_releases.json
+
+=> http://127.0.0.1:5000/json/thunderbird_beta_builds.json
+=> http://127.0.0.1:5000/json/thunderbird_primary_builds.json
