@@ -19,6 +19,8 @@ class Release(object):
     submitter = db.Column(db.String(250), nullable=False)
     _submittedAt = db.Column('submittedAt', db.DateTime(pytz.utc),
                              nullable=False, default=datetime.utcnow)
+    _shippedAt = db.Column('shippedAt', db.DateTime(pytz.utc),
+                             nullable=False, default=datetime.utcnow)
     version = db.Column(db.String(10), nullable=False)
     buildNumber = db.Column(db.Integer(), nullable=False)
     branch = db.Column(db.String(50), nullable=False)
@@ -43,10 +45,20 @@ class Release(object):
     def submittedAt(self, submittedAt):
         self._submittedAt = submittedAt
 
+    # Dates are always returned in UTC time and ISO8601 format to make them
+    # as transportable as possible.
+    @hybrid_property
+    def shippedAt(self):
+        return pytz.utc.localize(self._shippedAt).isoformat()
+
+    @shippedAt.setter
+    def shippedAt(self, shippedAt):
+        self._shippedAt = shippedAt
+
     def __init__(self, submitter, version, buildNumber, branch,
                  mozillaRevision, l10nChangesets, dashboardCheck,
                  mozillaRelbranch, enUSPlatforms=None, submittedAt=None,
-                 comment=None):
+                 shippedAt=None, comment=None):
         self.name = getReleaseName(self.product, version, buildNumber)
         self.submitter = submitter
         self.version = version.strip()
@@ -59,6 +71,8 @@ class Release(object):
         self.enUSPlatforms = enUSPlatforms
         if submittedAt:
             self.submittedAt = submittedAt
+        if shippedAt:
+            self.shippedAt = shippedAt
         if comment:
             self.comment = comment
 
@@ -67,6 +81,7 @@ class Release(object):
         for c in self.__table__.columns:
             me[c.name] = getattr(self, c.name)
         me['submittedAt'] = me['submittedAt']
+        me['shippedAt'] = me['shippedAt']
         return me
 
     @classmethod

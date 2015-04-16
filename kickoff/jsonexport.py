@@ -24,7 +24,7 @@ def getFilteredReleases(product, categories, lastRelease=None):
         version.append("[0-9]+\.[0-9](b|rc|build|plugin)[0-9]+$")
     if "esr" in categories:
         version.append("([0-9]+\.[0-9]+\.[0-9]+esr|[0-9]+\.[0-9]+\.[0-9]+\.[0-9]+esr)")
-    return [(r.version.replace("esr", ""), r._submittedAt.strftime("%Y-%m-%d")) for r in getReleases(ready=True, productFilter=product, versionFilterCategory=version, lastRelease=lastRelease)]
+    return [(r.version.replace("esr", ""), r._shippedAt.strftime("%Y-%m-%d")) for r in getReleases(ready=True, productFilter=product, versionFilterCategory=version, lastRelease=lastRelease)]
 
 
 # Firefox JSON

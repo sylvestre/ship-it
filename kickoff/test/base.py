@@ -44,6 +44,7 @@ class TestBase(unittest.TestCase):
                                l10nChangesets='ja zu', dashboardCheck=True,
                                mozillaRelbranch='FOO',
                                submittedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
+                               shippedAt=datetime(2005, 1, 4, 3, 4, 5, 6),
                                comment="yet an other amazying comment",
                                enUSPlatforms=None)
             r.complete = True
@@ -59,6 +60,7 @@ class TestBase(unittest.TestCase):
                                l10nChangesets='ja zu', dashboardCheck=True,
                                mozillaRelbranch='FOO',
                                submittedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
+                               shippedAt=datetime(2005, 1, 4, 3, 4, 5, 6),
                                comment="yet an other amazying comment",
                                enUSPlatforms=None)
             r.complete = True
@@ -71,6 +73,7 @@ class TestBase(unittest.TestCase):
                               branch='a', mozillaRevision='abc',
                               l10nChangesets='gh ij', dashboardCheck=True,
                               submittedAt=datetime(2015, 2, 26, 3, 4, 5, 6),
+                              shippedAt=datetime(2015, 3, 1, 3, 4, 5, 6),
                               mozillaRelbranch=None)
             r.complete = True
             r.ready = True
@@ -82,6 +85,7 @@ class TestBase(unittest.TestCase):
                               branch='a', mozillaRevision='abc',
                               l10nChangesets='gh ij', dashboardCheck=True,
                               submittedAt=datetime(2015, 2, 26, 3, 4, 5, 6),
+                              shippedAt=datetime(2015, 2, 26, 3, 4, 5, 6),
                               mozillaRelbranch=None)
             r.complete = True
             r.ready = True
@@ -93,6 +97,7 @@ class TestBase(unittest.TestCase):
                               branch='a', mozillaRevision='abc',
                               l10nChangesets='gh ij', dashboardCheck=True,
                               submittedAt=datetime(2015, 2, 26, 3, 4, 5, 6),
+                              shippedAt=datetime(2015, 2, 27, 3, 4, 5, 6),
                               mozillaRelbranch=None)
             r.complete = True
             r.ready = True
@@ -106,6 +111,7 @@ class TestBase(unittest.TestCase):
                                l10nChangesets='ja zu', dashboardCheck=True,
                                mozillaRelbranch='FOO',
                                submittedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
+                               shippedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
                                comment="yet an other amazying comment",
                                enUSPlatforms=None)
             r.complete = True
@@ -120,6 +126,7 @@ class TestBase(unittest.TestCase):
                                l10nChangesets='ja zu', dashboardCheck=True,
                                mozillaRelbranch='FOO',
                                submittedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
+                               shippedAt=datetime(2005, 3, 2, 3, 4, 5, 6),
                                comment="yet an other amazying comment",
                                enUSPlatforms=None)
             db.session.add(r)
@@ -130,6 +137,7 @@ class TestBase(unittest.TestCase):
                                l10nChangesets='ja zu', dashboardCheck=True,
                                mozillaRelbranch='FOO',
                                submittedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
+                               shippedAt=datetime(2005, 1, 2, 3, 4, 5, 6),
                                comment="yet an other amazying comment",
                                enUSPlatforms=None)
             r.complete = True
@@ -146,6 +154,7 @@ class TestBase(unittest.TestCase):
                                    l10nChangesets='li', dashboardCheck=True,
                                    mozillaRelbranch=None,
                                    submittedAt=datetime(2005, 1, 1, 1, 1, 1, 1),
+                                   shippedAt=datetime(2005, 1, 3, 1, 1, 1, 1),
                                    comment='My great comment!',
                                    enUSPlatforms="foo bar")
             r.complete = True
@@ -168,7 +177,9 @@ class TestBase(unittest.TestCase):
                                    branch='b', mozillaRevision='yyy',
                                    l10nChangesets='yy zz', dashboardCheck=True,
                                    mozillaRelbranch=None,
-                                   submittedAt=datetime(2005, 1, 1, 1, 1, 1, 1))
+                                   submittedAt=datetime(2005, 1, 1, 1, 1, 1, 1),
+
+                                   shippedAt=datetime(2005, 1, 3, 1, 1, 1, 1))
             r.complete = True
             r.ready = True
             # Shipped
@@ -182,7 +193,8 @@ class TestBase(unittest.TestCase):
                                    branch='b', mozillaRevision='yyy',
                                    l10nChangesets='yy zz', dashboardCheck=True,
                                    mozillaRelbranch=None,
-                                   submittedAt=datetime(2014, 1, 1, 1, 1, 1, 1))
+                                   submittedAt=datetime(2014, 1, 1, 1, 1, 1, 1),
+                                   shippedAt=datetime(2014, 2, 3, 1, 1, 1, 1))
             r.complete = True
             r.ready = True
             # Shipped
@@ -196,7 +208,9 @@ class TestBase(unittest.TestCase):
                                    branch='b', mozillaRevision='yyy',
                                    l10nChangesets='yy zz', dashboardCheck=True,
                                    mozillaRelbranch=None,
-                                   submittedAt=datetime(2005, 1, 1, 1, 1, 1, 1))
+                                   submittedAt=datetime(2005, 1, 1, 1, 1, 1, 1),
+
+                                   shippedAt=datetime(2005, 2, 1, 1, 1, 1, 1))
             r.complete = True
             r.ready = True
             # Shipped

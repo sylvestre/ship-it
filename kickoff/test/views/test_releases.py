@@ -12,6 +12,7 @@ from kickoff.test.views.base import ViewTest
 
 
 class TestRequestsAPI(ViewTest):
+    maxDiff = None
     def testGetAllReleases(self):
         ret = self.get('/releases')
         expected = {
@@ -40,6 +41,7 @@ class TestRequestsAPI(ViewTest):
 
 
 class TestReleaseAPI(ViewTest):
+    maxDiff = None
     def testGetRelease(self):
         ret = self.get('/releases/Thunderbird-2-build2')
         expected = {
@@ -47,6 +49,7 @@ class TestReleaseAPI(ViewTest):
             'product': 'thunderbird',
             'submitter': 'bob',
             'submittedAt': pytz.utc.localize(datetime.datetime(2005, 1, 1, 1, 1, 1, 1)).isoformat(),
+            'shippedAt': pytz.utc.localize(datetime.datetime(2005, 1, 3, 1, 1, 1, 1)).isoformat(),
             'version': '2',
             'buildNumber': 2,
             'branch': 'b',
@@ -85,6 +88,7 @@ class TestReleaseAPI(ViewTest):
             'l10nChangesets': 'ja zu',
             'partials': '0,1',
             'ready': True,
+            'shippedAt': pytz.utc.localize(datetime.datetime(2005, 1, 4, 3, 4, 5, 6)).isoformat(),
             'complete': True,
             'starter': None,
             'status': 'postrelease',
@@ -138,6 +142,7 @@ class TestReleaseAPI(ViewTest):
 
 
 class TestReleasesView(ViewTest):
+    maxDiff = None
     def testMakeReady(self):
         data = 'readyReleases=Fennec-4-build4&readyReleases=Fennec-4-build5'
         ret = self.post('/releases.html', data=data, content_type='application/x-www-form-urlencoded')
@@ -173,6 +178,7 @@ class TestReleasesView(ViewTest):
 
 
 class TestReleaseView(ViewTest):
+    maxDiff = None
     def testEditRelease(self):
         data = '&'.join([
             'fennec-version=1.0',

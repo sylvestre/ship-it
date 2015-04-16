@@ -16,7 +16,7 @@ class TestJSONRequestsAPI(ViewTest):
     def testMajorReleases(self):
         ret = self.get('/json/firefox_history_major_releases.json')
         expected = {
-            "2.0": "2005-01-02",
+            "2.0": "2005-01-04",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
@@ -24,7 +24,7 @@ class TestJSONRequestsAPI(ViewTest):
     def testFennecMajorReleases(self):
         ret = self.get('/json/mobile_history_major_releases.json')
         expected = {
-            "24.0": "2015-02-26",
+            "24.0": "2015-03-01",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
@@ -32,14 +32,14 @@ class TestJSONRequestsAPI(ViewTest):
     def testThunderbirdMajorReleases(self):
         ret = self.get('/json/thunderbird_history_major_releases.json')
         expected = {
-            "23.0": "2005-01-01",
+            "23.0": "2005-01-03",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
 
     def testStableReleases(self):
         ret = self.get('/json/firefox_history_stability_releases.json')
-        expected = { '2.0.2': '2005-01-02',
+        expected = { '2.0.2': '2005-01-04',
             "3.0.1": "2005-01-02",
         }
         self.assertEquals(ret.status_code, 200)
@@ -56,7 +56,7 @@ class TestJSONRequestsAPI(ViewTest):
     def testThunderbirdStableReleases(self):
         ret = self.get('/json/thunderbird_history_stability_releases.json')
         expected = {
-            "23.0.1": "2014-01-01",
+            "23.0.1": "2014-02-03",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
@@ -72,7 +72,7 @@ class TestJSONRequestsAPI(ViewTest):
     def testFennecBetaReleases(self):
         ret = self.get('/json/mobile_history_development_releases.json')
         expected = {
-            "23.0b2": "2015-02-26",
+            "23.0b2": "2015-02-27",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
@@ -80,7 +80,7 @@ class TestJSONRequestsAPI(ViewTest):
     def testThunderbirdBetaReleases(self):
         ret = self.get('/json/thunderbird_history_development_releases.json')
         expected = {
-            "24.0b2": "2005-01-01",
+            "24.0b2": "2005-02-01",
         }
         self.assertEquals(ret.status_code, 200)
         self.assertEquals(json.loads(ret.data), expected)
