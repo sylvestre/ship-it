@@ -1,6 +1,6 @@
 from kickoff import app
 
-from flask import jsonify
+from flask import jsonify, render_template
 
 from kickoff.model import getReleases
 from kickoff.firefoxdetails import primary_builds, beta_builds
@@ -185,3 +185,7 @@ def thunderbird_beta_builds_json():
 @app.route('/json/languages.json', methods=['GET'])
 def languages_json():
     return jsonify(languages)
+
+@app.route('/json_exports.html', methods=['GET'])
+def json_exports():
+    return render_template('json_exports.html')

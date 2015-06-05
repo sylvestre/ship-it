@@ -229,7 +229,7 @@ def getReleases(ready=None, complete=None, status=None, productFilter=None, vers
         if filters:
             if lastRelease:
                 # Retrieve the last X version
-                results = table.query.filter_by(**filters).order_by(table._submittedAt.desc()).limit(20)
+                results = table.query.filter_by(**filters).order_by(table._submittedAt.desc()).limit(40)
             else:
                 results = table.query.filter_by(**filters)
             for r in results:
